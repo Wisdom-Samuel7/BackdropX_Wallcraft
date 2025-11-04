@@ -1,50 +1,151 @@
-# Welcome to your Expo app 👋
+# 🖼️ Wallpaper Studio
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Wallpaper Studio** is a modern, smooth, and customizable wallpaper management app built with **React Native** and **Expo**.  
+It allows users to browse, favorite, and set high-quality wallpapers — featuring beautiful animations, clean design, and easy navigation.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- 🎨 **Dynamic UI** — sleek and responsive layout with gradient headings and icon navigation.  
+- 🧱 **Grid-based Settings Screen** — includes a right-side random image layout for enhanced visuals.  
+- 💾 **Favorites & Browsing** — explore and save wallpapers effortlessly.  
+- ⚙️ **Custom Settings** — manage image quality, notifications, and user preferences.  
+- 🚀 **Framer Motion Animations** — smooth transitions with a modern look.  
+- 🌗 **Light & Dark Friendly** — minimalist design that works across themes.
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📁 Project Structure
 
-In the output, you'll find options to open the app in a
+src/
+├── Comp/
+│ ├── Navbar.js
+│ ├── Search.js
+├── data/
+│ └── wallpaper.js
+├── screens/
+│ ├── SettingScreen.js # Includes grid layout with side image
+│ ├── BrowseScreen.js
+│ ├── FavouriteScreen.js
+│ └── HomeScreen.js
+├── App.js
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+yaml
+Copy code
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## ⚙️ Installation & Setup
 
-When you're ready, run:
-
+### 1️⃣ Clone the repository
 ```bash
-npm run reset-project
-```
+git clone https://github.com/your-username/wallpaper-studio.git
+cd wallpaper-studio
+2️⃣ Install dependencies
+bash
+Copy code
+npm install
+or
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+bash
+Copy code
+yarn install
+3️⃣ Start the project
+bash
+Copy code
+npx expo start
+Then scan the QR code with your Expo Go app or run it on an emulator.
 
-## Learn more
+🧩 Build with Expo EAS
+To generate builds for Android or iOS:
 
-To learn more about developing your project with Expo, look at the following resources:
+Development Preview
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+bash
+Copy code
+npx eas build -p android --profile preview
+Production Release
 
-## Join the community
+bash
+Copy code
+npx eas build -p android --profile production
+For iOS
 
-Join our community of developers creating universal apps.
+bash
+Copy code
+npx eas build -p ios --profile production
+To publish lightweight JS updates (no rebuild needed):
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+bash
+Copy code
+npx expo publish
+🔧 Environment Requirements
+Tool	Version
+Node.js	≥ 18.x
+npm / yarn	Latest
+Expo CLI	≥ 51
+React Native	≥ 0.75
+
+🧠 Tech Stack
+React Native
+
+Expo
+
+Expo Router
+
+Framer Motion (for animation)
+
+Linear Gradient
+
+MaskedView
+
+Ionicons
+
+👨‍💻 Development Commands
+Command	Description
+expo start	Run the app locally
+expo publish	Publish OTA update
+eas build -p android	Build Android app
+eas build -p ios	Build iOS app
+git add . && git commit -m "update"	Save changes locally
+git push origin main	Push code to GitHub
+
+🧾 Version Control Workflow
+Check changes
+
+bash
+Copy code
+git status
+Add all updates
+
+bash
+Copy code
+git add .
+Commit
+
+bash
+Copy code
+git commit -m "Added grid layout with right-side image in Settings"
+Push to GitHub
+
+bash
+Copy code
+git push origin main
+Your deployment host (Render, Netlify, etc.) will auto-build if connected.
+
+📸 Preview
+Settings Screen	Home Screen
+
+🧾 License
+This project is licensed under the MIT License — feel free to modify, improve, and distribute it.
+
+💡 Author
+Wisdom Samuel
+📍 Developer | UI/UX Designer | Mobile Engineer
+🔗 LinkedIn  |  GitHub
+
+Wallpaper Studio — Crafted with creativity, powered by Expo.
+
+yaml
+Copy code
