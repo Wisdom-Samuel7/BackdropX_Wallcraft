@@ -40,7 +40,7 @@ Copy code
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/wallpaper-studio.git
+
 cd wallpaper-studio
 2️⃣ Install dependencies
 bash
