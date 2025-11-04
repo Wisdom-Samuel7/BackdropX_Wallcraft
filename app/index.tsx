@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { wallpapers } from "../data/wallpaper";
 import { useNavigation } from "@react-navigation/native";
 
+
+
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 

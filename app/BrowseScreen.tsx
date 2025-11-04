@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 
+
 export default function BrowseScreen() {
   const navigation = useNavigation();
 
@@ -68,13 +69,13 @@ export default function BrowseScreen() {
   
 
       {/* Wallpaper List (1 column) */}
-         <FlatList
-  data={wallpapers}
-  keyExtractor={(item) => item.id.toString()}
-  showsVerticalScrollIndicator={false}
-  numColumns={1}
-  contentContainerStyle={{ paddingBottom: 100 }}
-  renderItem={({ item }) => (
+  <FlatList
+    data={wallpapers}
+    keyExtractor={(item) => item.id.toString()}
+    showsVerticalScrollIndicator={false}
+    numColumns={1}
+    contentContainerStyle={{ paddingBottom: 100 }}
+    renderItem={({ item }) => (
     <TouchableOpacity style={styles.card}>
       <Image source={{ uri: item.url }} style={styles.image} />
 
@@ -89,7 +90,7 @@ export default function BrowseScreen() {
       </View>
     </TouchableOpacity>
   )}
-/>
+ />
 
     </SafeAreaView>
   );
