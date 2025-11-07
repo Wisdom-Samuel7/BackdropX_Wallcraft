@@ -9,6 +9,8 @@ function createWindow() {
     backgroundColor: "#ffffff",
     webPreferences: {
       nodeIntegration: true,
+        contextIsolation: false,
+        webSecurity: false, // 🔓 allows remote image loading from Unsplash
     },
   });
 

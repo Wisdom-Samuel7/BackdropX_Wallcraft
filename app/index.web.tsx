@@ -146,23 +146,33 @@ export default function WebHome() {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ gap: 20 }}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.card}>
-            <Image source={{ uri: item.url }} style={styles.image} />
-           
-            
+  <TouchableOpacity style={styles.card}>
+    {Platform.OS === "web" ? (
+      <img
+        src={item.url}
+        alt={item.title}
+        style={{
+          width: "100%",
+          height: 200,
+          objectFit: "cover",
+          borderRadius: 12,
+        }}
+      />
+    ) : (
+      <Image source={{ uri: item.url }} style={styles.image} />
+    )}
 
-            {/* Overlay content */}
-                  <View style={styles.overlayText}>
-                    <Text style={styles.overlayHeader}>{item.title}</Text>
-                    <Text style={styles.overlaySub}>{item.description}</Text>
-            
-                    <TouchableOpacity style={styles.countButton}>
-                      <Text style={styles.countText}>{item.count} Wallpapers</Text>
-                    </TouchableOpacity>
-                  </View>
+    {/* Overlay content */}
+    <View style={styles.overlayText}>
+      <Text style={styles.overlayHeader}>{item.title}</Text>
+      <Text style={styles.overlaySub}>{item.description}</Text>
 
-          </TouchableOpacity>
-        )}
+      <TouchableOpacity style={styles.countButton}>
+        <Text style={styles.countText}>{item.count} Wallpapers</Text>
+      </TouchableOpacity>
+    </View>
+  </TouchableOpacity>
+)}
       />
     </View>
   );

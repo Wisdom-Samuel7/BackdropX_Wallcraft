@@ -8,10 +8,12 @@
     "scheme": "mywallpaperapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+
     "ios": {
       "supportsTablet": true
     },
-    "android": {
+
+    "android": { 
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -22,10 +24,17 @@
       "predictiveBackGestureEnabled": false,
       "package": "com.knowurcraft.mywallpaperapp"
     },
+
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro"              // ✅ ensures correct static export
     },
+
+    "router": {
+      "type": "static"                 // ✅ ensures links like /gallery work offline
+    },
+
     "plugins": [
       "expo-router",
       [
@@ -41,10 +50,12 @@
         }
       ]
     ],
+
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
     },
+
     "extra": {
       "router": {},
       "eas": {

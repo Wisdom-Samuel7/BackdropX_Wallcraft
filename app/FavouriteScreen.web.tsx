@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Animated,
@@ -11,6 +10,7 @@ import {
   Pressable,
   FlatList,
   Platform,
+  Image,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { wallpapers } from "../data/wallpaper";
@@ -20,6 +20,18 @@ import MaskedView from "@react-native-masked-view/masked-view";
 import { AnimatePresence, motion } from "framer-motion";
 
 const { height } = Dimensions.get("window");
+
+/* ✅ Cross-platform Image Component */
+const CrossImage = ({ uri, style }: any) =>
+  Platform.OS === "web" ? (
+    <img
+      src={uri}
+      alt="wallpaper"
+      style={{ ...style, objectFit: "cover", width: "100%", height: "100%" }}
+    />
+  ) : (
+    <Image source={{ uri }} style={style} resizeMode="cover" />
+  );
 
 export default function FavouriteScreen() {
   const [selected, setSelected] = useState(null);
@@ -65,12 +77,10 @@ export default function FavouriteScreen() {
   };
 
   return (
-    <View style={styles.container}> 
-
-      {/* ✅ Nav Bar */}
+    <View style={styles.container}>
+      {/* ✅ Navbar */}
       <View style={styles.navbar}>
         <Text style={styles.brandText}>Wallpaper Studio</Text>
-
         <View style={styles.navLinks}>
           <Link href="/" asChild>
             <Pressable style={styles.navItem}>
@@ -109,7 +119,7 @@ export default function FavouriteScreen() {
             style={{
               fontSize: 28,
               fontWeight: "700",
-              background: "linear-gradient(90deg, #efce27, #ff760e, #963899)",
+              background: "linear-gradient(90deg, #efce27, #ff760e, #963809)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -137,7 +147,6 @@ export default function FavouriteScreen() {
         )}
 
         <Text style={styles.subText}>Your saved wallpaper collections</Text>
-
         <TouchableOpacity onPress={handleViewAll}>
           <Text style={styles.viewAll}>View All →</Text>
         </TouchableOpacity>
@@ -154,7 +163,7 @@ export default function FavouriteScreen() {
           columnWrapperStyle={{ justifyContent: "flex-start", marginBottom: 10 }}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.card} onPress={() => handleOpen(item)}>
-              <Image source={{ uri: item.url }} style={styles.image} />
+              <CrossImage uri={item.url} style={styles.image} />
               <View style={styles.overlayText}>
                 <Text style={styles.overlayHeader}>{item.title}</Text>
                 <TouchableOpacity style={styles.countButton}>
@@ -169,7 +178,7 @@ export default function FavouriteScreen() {
         />
       )}
 
-      {/* ✅ Fullscreen "View All" Overlay with AnimatePresence */}
+      {/* ✅ Fullscreen "View All" Overlay */}
       <AnimatePresence>
         {viewAll && (
           <motion.View
@@ -180,86 +189,67 @@ export default function FavouriteScreen() {
             transition={{ duration: 0.4 }}
             style={styles.viewAllScreen}
           >
-
-             {/* ✅ Nav Bar */}
-      <View style={styles.navbar}>
-        <Text style={styles.brandText}>Wallpaper Studio</Text>
-
-        <View style={styles.navLinks}>
-          <Link href="/" asChild>
-            <Pressable style={styles.navItem}>
-              <Ionicons name="home-outline" size={20} color="#777" />
-              <Text style={styles.navText}>Home</Text>
-            </Pressable>
-          </Link>
-
-          <Link href="/BrowseScreen" asChild>
-            <Pressable style={styles.navItem}>
-              <Ionicons name="list-outline" size={20} color="#777" />
-              <Text style={styles.navText}>Browse</Text>
-            </Pressable>
-          </Link>
-
-          <Pressable style={styles.navItem}>
-            <Ionicons name="heart-outline" size={20} color="#000" />
-            <Text style={[styles.navText, { color: "#000", fontWeight: "600" }]}>
-              Favorites
-            </Text>
-          </Pressable>
-
-          <Link href="/SettingScreen" asChild>
-            <Pressable style={styles.navItem}>
-              <Ionicons name="settings-outline" size={20} color="#777" />
-              <Text style={styles.navText}>Settings</Text>
-            </Pressable>
-          </Link>
-        </View>
-      </View>
-
-            {/* Back Button */}
             <TouchableOpacity onPress={handleBack} style={styles.backButton}>
               <Ionicons name="arrow-back-outline" size={22} color="#000" />
               <Text style={{ fontWeight: "600", marginLeft: 6 }}>Back</Text>
             </TouchableOpacity>
 
-            {/* Top-left Text */}
             <View style={styles.viewAllTextContainer}>
               <Text style={styles.viewAllTitle}>Saved Wallpapers</Text>
-              <Text style={styles.viewAllSubtitle}>Your saved wallpapers collection</Text>
+              <Text style={styles.viewAllSubtitle}>
+                Your saved wallpapers collection
+              </Text>
             </View>
 
-            {/* Center-bottom Icon */}
             <View style={styles.viewAllBottomImage}>
-
               <motion.View
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <Ionicons name="images-outline" size={150} color="#7775" />
-              </motion.View> 
+              </motion.View>
 
-              <Text style={{ marginTop: 12, fontSize: 20, color: "#333",fontWeight:"500" }}>No Saved Wallpapers</Text>
-              <Text style={{ fontSize: 12, color: "#aaa", marginTop: 6 }}>Start saving your favorite wallpapers to see them here</Text>
-           
-              <TouchableOpacity style={{ marginTop: 20, backgroundColor: "#ff760e", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 12 }}>
-                <Text style={{ color: "#fff", fontWeight: "600" }}>Browse Wallpapers</Text>
-              </TouchableOpacity> 
+              <Text
+                style={{
+                  marginTop: 12,
+                  fontSize: 20,
+                  color: "#333",
+                  fontWeight: "500",
+                }}
+              >
+                No Saved Wallpapers
+              </Text>
+              <Text style={{ fontSize: 12, color: "#aaa", marginTop: 6 }}>
+                Start saving your favorite wallpapers to see them here
+              </Text>
 
+              <TouchableOpacity
+                style={{
+                  marginTop: 20,
+                  backgroundColor: "#ff760e",
+                  paddingVertical: 10,
+                  paddingHorizontal: 20,
+                  borderRadius: 12,
+                }}
+              >
+                <Text style={{ color: "#fff", fontWeight: "600" }}>
+                  Browse Wallpapers
+                </Text>
+              </TouchableOpacity>
             </View>
-
           </motion.View>
         )}
       </AnimatePresence>
 
-      {/* ✅ Modal for Preview */}
+      {/* ✅ Modal Preview */}
       <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
         <Pressable style={styles.backdrop} onPress={handleClose} />
         <Animated.View style={[styles.bottomSheet, { transform: [{ translateY: slideAnim }] }]}>
           {selected && (
             <View style={styles.modalContainer}>
               <View style={styles.handle} />
-              <Image source={{ uri: selected.url }} style={styles.modalImage} resizeMode="cover" />
+              <CrossImage uri={selected.url} style={styles.modalImage} />
 
               <View style={styles.modalContent}>
                 <Text style={styles.modalHeader}>Preview</Text>
@@ -279,32 +269,6 @@ export default function FavouriteScreen() {
                     ))}
                   </View>
                 </View>
-
-                {/* Description with gradient fade */}
-                <View style={styles.textContainer}>
-                  <Text style={styles.fullDescription}>{selected.fullDesc}</Text>
-                  <LinearGradient
-                    colors={["transparent", "#fff"]}
-                    style={styles.fadeOverlay}
-                    pointerEvents="none"
-                  />
-                </View>
-
-                <View style={styles.iconRow}>
-                  <Ionicons size={24} color="#766f6f" name="share-outline" />
-                  <Ionicons size={24} color="#766f6f" name="shuffle-outline" />
-                  <Ionicons size={24} color="#766f6f" name="settings-outline" />
-                </View>
-
-                <TouchableOpacity style={styles.setButtonB}>
-                  <Text style={styles.btnTextB}>
-                    <Ionicons size={16} name="images-outline" /> Save to Favorites
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.setButton}>
-                  <Text style={styles.btnText}>Set as Wallpaper</Text>
-                </TouchableOpacity>
               </View>
             </View>
           )}
